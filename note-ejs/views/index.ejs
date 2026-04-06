@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-300">
+    <section>
+        <!-- Task form -->
+         <h1 class ="text-center text-5xl font-semibold mt-5  ">Task Files Generator</h1>
+          <div class=" flex items-center justify-center mt-5">
+
+            <form action="/create" method="post">
+                <input type="text"
+                 class="bg-gray-400 text-2xl rounded-xl block mb-2 px-3 py-1" 
+                 placeholder="Title"
+                 name="title">
+
+                <input type="text" 
+                class="bg-gray-400 text-2xl rounded-xl block mb-2 px-3 py-1" 
+                placeholder="Details"
+                name="details">
+
+                <input type="submit"
+                 value="Add Task"
+                  class="bg-black text-white w-full rounded-xl px-4 py-2 active:scale-95 active:bg-gray-600">
+
+            </form>
+
+
+          </div>
+
+        <!-- task -->
+
+        <div class="flex  justify-center flex-wrap gap-4 p-10 mt-10">
+            <!-- to write js code we use <% %> in between this the code is written -->
+            <% data.forEach((val)=>{ %>
+                     <div class="bg-black text-white p-2 w-1/4 rounded-xl h-32 flex flex-col justify-between ">
+            <h1 class="text-4xl text-center"><%= val %></h1>
+            <div class=" flex justify-between">
+
+                <a href="/open/<%=val %>"
+                   class="text-blue-400 active:text-red-400">
+                   Open
+               </a>
+
+                <a href="/edit/<%= val %>"
+                  class="text-gray-400 active:text-white">
+                  Edit
+               </a>
+            </div>
+
+          </div>
+             <% }) %>
+
+         
+        </div>
+    </section>
+</body>
+</html>

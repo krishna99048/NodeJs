@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit File</title>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-300">
+    <section>
+        <!-- Task form -->
+          <div class=" flex items-center justify-center mt-5">
+
+            <form action="/rename" method="post">
+                <input type="text"
+                 class="bg-gray-400 text-2xl rounded-xl block mb-2 px-3 py-1" 
+                 placeholder="old file name"
+                 name="old"
+                 value="<%= oldname %>">
+
+                <input type="text" 
+                class="bg-gray-400 text-2xl rounded-xl block mb-2 px-3 py-1" 
+                placeholder="new file name"
+                name="new">
+
+                <input type="submit"
+                 value="Rename"
+                  class="bg-orange-600 text-white w-full rounded-xl px-4 py-2 active:scale-95 active:bg-orange-200">
+
+            </form>
+          </div>
+    </section>
+</body>
+</html>
