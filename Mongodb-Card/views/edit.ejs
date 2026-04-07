@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit |</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+    <h1 class="text-3xl font-semibold text-center my-20">Edit Your Card</h1>
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <form action="/edit/<%= user._id %>" method="post">
+        <div class="mb-4">
+          <label
+            for="fullname"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Full Name</label
+          >
+          <input
+            type="text"
+            id="fname"
+            name="fname"
+            value="<%= user.fullname%>"
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-300"
+            placeholder="joe Doe"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label
+            for="username"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Username</label
+          >
+          <input
+            type="text"
+            id="uname"
+            name="uname"
+            value="<%= user.username %>"
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-300"
+            placeholder="Joe125"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 text-sm font-bold mb-2"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="<%= user.email%>"
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-300"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+
+        <div class="mb-6">
+          <div class="flex justify-between mb-2">
+            <label for="image" class="text-gray-700 text-sm font-bold"
+              >Image</label
+            >
+          </div>
+          <input
+            type="text"
+            id="img"
+            name="img"
+            value="<%= user.image %>"
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-300"
+            placeholder="https://abcafkjadfja.com"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-300"
+        >
+          Edit Card
+        </button>
+      </form>
+
+      <p class="text-center text-gray-600 mt-6 text-sm">
+        Show All Cards
+        <a href="/card" class="text-indigo-600 font-bold hover:underline">Cards</a>
+      </p>
+    </div>
+  </body>
+</html>
+ 
