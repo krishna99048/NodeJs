@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top left, #1e1b4b, #312e81, #000000);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Subtle glow effect for the background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(800px circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.06), transparent 40%);
+  z-index: -1;
+}
