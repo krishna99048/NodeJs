@@ -17,7 +17,13 @@ router.delete("/user/:id", usermiddleware.authUser,middleware.authAdmin , adminC
 // Router -- Service -- Controller -- Call into router
 router.put("/user/:id/role" , usermiddleware.authUser,middleware.authAdmin , adminController.updateUserRole)
 
+// show all orders
+router.get("/all/orders" , usermiddleware.authUser, middleware.authAdmin, adminController.AllOrders)
 
+// show all carts
+router.get("/all/carts" , usermiddleware.authUser, middleware.authAdmin, adminController.AllCarts)
 
+// show all wishlists
+router.get("/all/wishlists" , usermiddleware.authUser, middleware.authAdmin, adminController.AllWishlists)
 
 module.exports = router;

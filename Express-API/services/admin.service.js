@@ -1,24 +1,48 @@
-// show all user logic
+const userModel = require("../models/user_model");
+const orderModel = require("../models/order.model");
+const cartModel = require("../models/cart.model");
+const wishlistModel = require("../models/wishlist.model");
 
-const userModel = require("../models/user_model")
-
-
+// Show all users
 module.exports.getAllUser = async () => {
-    const allUser = await userModel.find();
+  return await userModel.find();
+};
 
-    return allUser;
-}
-
+// Delete user
 module.exports.deleteUser = async (id) => {
-    const user = await userModel.findOneAndDelete({_id: id});
-    return user;
-}
+  return await userModel.findOneAndDelete({ _id: id });
+};
 
-// Update role
-module.exports.updateUserRole = async ({userId , role}) => {
-    return await userModel.findOneAndUpdate(
-        {_id: userId},
-        {role},
-        {new: true},
-    );
+// Update user role
+module.exports.updateUserRole = async ({ userId, role }) => {
+  return await userModel.findOneAndUpdate(
+    { _id: userId },
+    { role },
+    { new: true }
+  );
+};
+
+// Show all orders
+module.exports.getAllOrders = async () => {
+  return await orderModel
+    .find()
+    .populate("userId", "fullname email")
+    .populate("items.productId", "name price images")
+    .sort({ createdAt: -1 });
+};
+
+// Show all carts
+module.exports.getAllCarts = async () => {
+  return await cartModel
+    .find()
+    .populate("userId")
+    .populate("items.productId");
+};
+
+// Show all wishlists
+module.exports.getAllWishlists = async () => {
+  return await wishlistModel
+    .find()
+    .populate("userId")
+    .populate("productIds");
 };

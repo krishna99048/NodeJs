@@ -16,19 +16,32 @@ const chatRouter = require("./routes/web/v1/chat.route")
 
 const cartRouter = require("./routes/web/v1/cart.route")
 
+const orderRouter = require("./routes/web/v1/order.route")
+
+const wishlistRouter = require("./routes/web/v1/wishlist.route")
+
 const app = express();
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.set(db());
+db();
 
-// cors origin -> allow only that website that mention into origin group, ex. backend only rex when localhost 3002 send request, other than give cors error
-// localhost: 3002 -> req -> accept -> give response
-// localhost: 3004 -> req -> cors error -> don't give response
-// in origin you mention frontend urls (development, production both)
-app.use(cors({ origin: "http://localhost:3002", credentials: true }));
+// Temporary: Allow all origins to debug connectivity issues
+app.use(cors({ 
+    origin: true, 
+    credentials: true 
+}));
+
+// Request Logger
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
+
+app.use("/public", express.static("public"));
+app.use("/uploads", express.static("uploads"));
 
 PORT = process.env.PORT;
 
@@ -48,6 +61,10 @@ app.use("/product", productRouter);
 app.use("/bot" , chatRouter)
 
 app.use("/cart" , cartRouter)
+
+app.use("/order" , orderRouter)
+
+app.use("/wishlist" , wishlistRouter)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
